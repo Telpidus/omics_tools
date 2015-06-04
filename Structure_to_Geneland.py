@@ -1,19 +1,19 @@
 #!/usr/bin/python3
 
 # Copyright 2015 Telma G. Laurentino <telma.laurentino@gmail.com>
-# This file is part of parsar_structur_to_geneland.
-# parsar_structur_to_geneland is free software: you can redistribute it and/or modify
+# This file is part of parsar_structure_to_geneland.
+# parsar_structure_to_geneland is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation, either version 3 of the License, or
 # (at your option) any later version.
 
-# clean_maf is distributed in the hope that it will be useful,
+# parsar_structure_to_geneland is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 # GNU General Public License for more details.
 
 # You should have received a copy of the GNU General Public License
-# along with clean_maf. If not, see <http://www.gnu.org/licenses/>.
+# along with parsar_structure_to_geneland. If not, see <http://www.gnu.org/licenses/>.
 
 
 def read_structure(docinput):
