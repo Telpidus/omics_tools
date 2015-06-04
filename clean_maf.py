@@ -17,10 +17,10 @@
 '''a script to correct deficient vcftools filtering of minimum allele frequency (maf) loci. input is a vcf file and in the output lines with maf lower than the specified are discarded'''
 
 def parsar_vcf(vcf,  maf):
-    vcf = open(vcf,  "r")
+    vcf_handle = open(vcf,  "r")
     output = open (vcf+".clean_maf",  "w")
     count = 0
-    for line in vcf:
+    for line in vcf_handle:
        
         if line.startswith("#"):
             output.write(line)
@@ -29,11 +29,11 @@ def parsar_vcf(vcf,  maf):
             lines = "".join(lines[9:])
             zeros = lines.count("0")
             ones = lines.count("1")
-            if ones/zeros >= maf: 
+            if ones/zeros >= float(maf): 
                 output.write(line)
                 count +=1
     output.close()
-    vcf.close()
+    vcf_handle.close()
     return count
     
   
