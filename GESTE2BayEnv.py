@@ -17,9 +17,9 @@
 
 '''a script to create a BayEnv2.0 input from .GESTE files (typical BayScan input). If you have a .vcf file you can convert it to .GESTE with PGDSpider'''
 
-infile= open("/home/telmagl/Desktop/BayEnv/bayenv2_64bit/BayEnv_noSE/Tlepidus_noSE_27_noLD.geste",  "r")
 
-def parsar_geste(infile): #parsses the .geste file (Bayscan input)
+def parsar_geste(infile_name): #parsses the .geste file (Bayscan input)
+    infile= open(infile_name,  "r")
     SNP= {} #dictionary with #SNP as key  = [frequencyAlelleA in pop_1, frequencyAlelleA in pop_2...], [frequencyAlelleB in pop_1, frequencyAlelleB in pop_2...]
     for line in infile:
         line = line.split()
@@ -35,22 +35,22 @@ def parsar_geste(infile): #parsses the .geste file (Bayscan input)
         SNP[line[0]][1].append(alelleB) #frequency of alelleB in all pops
     return SNP
 
-SNP = parsar_geste(infile)
 
-def write_SNPSFILE_and_SNPFILE(SNP, SNPSFILE): #creates the input files for BayEnv2.0
-    outfile = open (SNPSFILE,  "w")
-    for keys,  values in SNP.items():
+def write_SNPSFILE_and_SNPFILE(SNP, snpsfile_name): #creates the input files for BayEnv2.0
+    outfile = open (snpsfile_name,  "w")
+    for keys, values in SNP.items():
         alelleA = "\t".join(values[0])
         alelleB = "\t".join(values [1])
         snp = alelleA + "\n" + alelleB + "\n"
         outfile.write (snp)
-        SNPFILE = open ("/home/telmagl/Desktop/BayEnv/bayenv2_64bit/BayEnv_noSE/Inidivid_SNPS" + keys + ".txt",  "w") #writes the individual SNP files 
+        SNPFILE = open (snpsfile_name + keys + ".txt", "w") #writes the individual SNP files 
         SNPFILE.write(snp)
         SNPFILE.close()
     outfile.close()
-    return SNPSFILE
 
-write_SNPSFILE_and_SNPFILE(SNP, "/home/telmagl/Desktop/BayEnv/bayenv2_64bit/BayEnv_noSE/noSE_SNPSFILE_noLD") #writes de SNPSFILE with all SNPs info
-    
-    
-    
+
+if __name__ == "__main__":
+    # Usage: python3 GESTE2BayEnv.py file.GESTE SNPFILE
+    from sys import argv
+    SNP = parsar_geste(argv[1])
+    write_SNPSFILE_and_SNPFILE(SNP, argv[2]) #writes de SNPSFILE with all SNPs info
