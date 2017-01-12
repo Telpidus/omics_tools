@@ -1,14 +1,14 @@
 #!/bin/bash
-#co-authory Telma G. Laurentino(Telpidus); Francisco Pina-Martins(StuntsPT)
-#usage: bash script.sh <inputfile.geste> <#loci> <#pops> <output_file>
+# co-authory Telma G. Laurentino(Telpidus); Francisco Pina-Martins(StuntsPT)
+# Usage: bash GESTE2selestim.sh <inputfile.geste> <outputfile.selestim>
 
 # Make sure script exits on error (we're using "rm" here)
 set -e
 
-# Get the number of loci from the GESTE file:
+# Get the number of loci from the GESTE file
 loci=$(head -n 1 ${1} | sed 's/.*=//')
 
-# Get the number of populations from the GESTE file:
+# Get the number of populations from the GESTE file
 pops=$(head -n 3 ${1} | tail -n 1 |sed 's/.*=//')
 
 # Get the allele frequencies from GESTE and write them in SelEstim format
